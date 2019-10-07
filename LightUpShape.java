@@ -22,7 +22,7 @@ public class LightUpShape extends Application {
 		rectangle.setFill(Color.TRANSPARENT);
 		rectangle.setStroke(Color.TRANSPARENT);
 		group.getChildren().add(rectangle);
-		
+		group.setOnMouseClicked(this::handleMouseClick);
 		Scene scene = new Scene(group, 500, 500, javafx.scene.paint.Color.BISQUE);
 		scene.setOnMouseMoved(this :: processMouse);
 		primaryStage.setTitle("Light up A Shape");
@@ -31,18 +31,21 @@ public class LightUpShape extends Application {
 		
 	}
 	
+	public void handleMouseClick(MouseEvent event) {
+		rectangle.setVisible(false);
+	}
 	
 	public void processMouse(MouseEvent event) {
 		int x = (int)event.getX();
 		int y = (int)event.getY();
 		if (x>=X_CORD &&  x <= WIDTH + X_CORD && y <= HEIGHT + Y_CORD  && y>=Y_CORD)
 		{
-			
+			rectangle.setVisible(true);
 			rectangle.setFill(Color.color(Math.random(), Math.random(), Math.random()));
 		}
 		else
 		{
-		
+			rectangle.setVisible(true);
 			rectangle.setFill(Color.TRANSPARENT);
 			rectangle.setStroke(Color.BLACK);
 		}
